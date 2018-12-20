@@ -22,6 +22,40 @@ public class EntityMoney {
         @Column(name = "sell_rate")
         private Float sellRate;
 
+        public EntityMoney() {
+            this.name = name;
+            this.amount = amount;
+            this.buyRate = buyRate;
+            this.sellRate = sellRate;
+        }
+
+        public void setId(Long id) {
+            this.id = id;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public void setAmount(Float amount) {
+            this.amount = amount;
+        }
+
+        public void setBuyRate(Float buyRate) {
+            this.buyRate = buyRate;
+        }
+
+        public void setSellRate(Float sellRate) {
+            this.sellRate = sellRate;
+        }
+
+        public Long getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
 
         public Float getAmount() {
             return amount;
@@ -29,12 +63,9 @@ public class EntityMoney {
 
         public Float getBuyRate() {
             return buyRate;
-        }public Float getSellRate() {
-            return sellRate;
-        }public Float getName() {
-            return name;
-        }public Float getAmount() {
-            return amount;
         }
 
+        public Float getSellRate() {
+            return sellRate;
+        }
 }
