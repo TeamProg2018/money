@@ -6,7 +6,8 @@ public class EntityMoney {
 
 
         @Id
-        @GeneratedValue(strategy = GenerationType.AUTO)
+        //коментимо наступний рядок і прописуємо конструктор для id ?
+        @GeneratedValue(strategy = GenerationType.AUTO)  
         @Column(name = "curency_id")
         private Long id;
 
