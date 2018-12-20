@@ -6,7 +6,7 @@ public class EntityMoney {
 
 
         @Id
-        //коментимо наступний рядок і прописуємо конструктор для id ?
+        //коментимо наступний рядок і прописуємо конструктор для id, щоб потім запхати в id міжнародні коди наших валют, правильно я зрозумів?
         @GeneratedValue(strategy = GenerationType.AUTO)  
         @Column(name = "curency_id")
         private Long id;
