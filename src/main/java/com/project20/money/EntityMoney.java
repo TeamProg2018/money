@@ -22,12 +22,14 @@ public class EntityMoney {
         @Column(name = "sell_rate")
         private Float sellRate;
 
+
         public EntityMoney() {
             this.name = name;
             this.amount = amount;
             this.buyRate = buyRate;
             this.sellRate = sellRate;
         }
+
 
         public void setId(Long id) {
             this.id = id;
@@ -48,6 +50,8 @@ public class EntityMoney {
         public void setSellRate(Float sellRate) {
             this.sellRate = sellRate;
         }
+
+
 
         public Long getId() {
             return id;
