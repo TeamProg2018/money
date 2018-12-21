@@ -2,13 +2,20 @@ package com.project20.money;
 
 import javax.persistence.*;
 
+@Entity
+
+//створив базу даних "money", прописав там USD, EUR, UAH, створи в себе бд і після клонування
+//чи там будуть якісь записи ???
+@Table(name="carency_table", catalog="money")
 public class EntityMoney {
 
 
         @Id
         //коментимо наступний рядок і прописуємо конструктор для id, щоб потім запхати в id міжнародні коди наших валют
         //правильно я зрозумів? чи треба міняти strategy?
-        @GeneratedValue(strategy = GenerationType.AUTO)  
+
+        //да, а анотація Id забезпечить його унікальність, як мінімум потрібно спробувати
+        //@GeneratedValue(strategy = GenerationType.AUTO)
         @Column(name = "curency_id")
         private Long id;
 
@@ -24,8 +31,11 @@ public class EntityMoney {
         @Column(name = "sell_rate")
         private Float sellRate;
 
+        //добавив дефолтний конструктор
+        public EntityMoney(){}
 
-        public EntityMoney() {
+        public EntityMoney(Long id,String name,Float amount,Float buyRate,Float sellRate) {
+            this.id=id;
             this.name = name;
             this.amount = amount;
             this.buyRate = buyRate;
@@ -37,9 +47,7 @@ public class EntityMoney {
             this.id = id;
         }
 
-        public void setName(String name) {
-            this.name = name;
-        }
+        public void setName(String name) {this.name = name;}
 
         public void setAmount(Float amount) {
             this.amount = amount;
