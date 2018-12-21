@@ -9,7 +9,6 @@ import javax.persistence.*;
 @Table(name="carency_table", catalog="money")
 public class EntityMoney {
 
-
         @Id
         //коментимо наступний рядок і прописуємо конструктор для id, щоб потім запхати в id міжнародні коди наших валют
         //правильно я зрозумів? чи треба міняти strategy?
