@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 //створив базу даних "money", прописав там USD, EUR, UAH, створи в себе бд і після клонування
 //чи там будуть якісь записи ???
-@Table(name="carency_table", catalog="money")
+@Table(name="curency_table", catalog="money")
 public class EntityMoney {
 
         @Id
