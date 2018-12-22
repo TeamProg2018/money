@@ -30,11 +30,11 @@ public class EntityUser
     public EntityUser() {
     }
 
-    public EntityUser(String name, String email, String phone, EntityMoney entityMoney) {
+    public EntityUser(String name, String email, String phone) {
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.entityMoney = entityMoney;
+
     }
 
     public Long getId() {
@@ -68,6 +68,8 @@ public class EntityUser
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+
 
     public EntityMoney getEntityMoney() {
         return entityMoney;
