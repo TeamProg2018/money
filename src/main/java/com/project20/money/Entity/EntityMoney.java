@@ -1,4 +1,4 @@
-package com.project20.money;
+package com.project20.money.Entity;
 
 import javax.persistence.*;
 
