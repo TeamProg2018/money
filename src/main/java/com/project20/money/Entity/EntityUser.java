@@ -5,7 +5,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "table_user", catalog = "money")
 
-public class EntityUser
+public class
+EntityUser
 {
 
 

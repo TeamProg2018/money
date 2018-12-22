@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Page_1</title>
+</head>
+<body>
+<form method="post" action="sum">
+    <input type="text" name="price" placeholder="sum">
+
+
+    <select name="name_1">
+        <option>USD</option>
+        <option>EUR</option>
+        <option>UAH</option>
+    </select>
+
+    <select name="name_2">
+        <option>USD</option>
+        <option>EUR</option>
+        <option>UAH</option>
+    </select>
+
+
+
+
+    <button type="submit">Send</button>
+</form>
+
+Это будет:  <td th:text="${key_1}"></td>
+            <td th:text="${key}"></td>
+</body>
+</html>
