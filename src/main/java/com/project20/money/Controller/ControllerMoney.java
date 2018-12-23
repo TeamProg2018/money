@@ -58,7 +58,7 @@ public class ControllerMoney {
             }
             if(name_2.equals("UAH")){
                 a="UAH";
-                b=myCurrency.getPrice()*myQuotation.eur_uan;
+                b=myCurrency.getPrice()*myQuotation.eur_uah;
                 System.out.println("UAH");
 
             }
