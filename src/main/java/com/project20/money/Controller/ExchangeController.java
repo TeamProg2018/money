@@ -24,8 +24,6 @@ public class ExchangeController {
 //    model.put("transList", transactionRepository.findAll());
     return "page_1";
   }
-
-
   @PostMapping("/pg")
   public String postPage(@RequestParam(value = "addSum") Long sum,
                          @RequestParam(value = "whatDo") String action,
@@ -41,11 +39,10 @@ public class ExchangeController {
     repositoryMoney.save(entityMoneyUSD);
     repositoryMoney.save(entityMoneyEUR);
     repositoryMoney.save(entityMoneyUAH);
-    EntityMoney entityMoneyKOSTIL =new EntityMoney();
-
 //    болванка курсов для проверки работы пока я их не смог (((
 //    из базы мани по repositoryMoney дернуть...
-    Float curs = 1f;
+    EntityMoney entityMoneyKOSTIL =new EntityMoney();
+
     if (currency.equals("USD")) {
       entityMoneyKOSTIL=entityMoneyUSD;
     }
