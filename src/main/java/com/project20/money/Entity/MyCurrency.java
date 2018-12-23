@@ -1,3 +1,4 @@
+/*
 package com.project20.money.Entity;
 
 import javax.persistence.Entity;
@@ -40,3 +41,4 @@ public class MyCurrency {
         this.price = price;
     }
 }
+*/

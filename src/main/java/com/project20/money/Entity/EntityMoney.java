@@ -6,9 +6,8 @@ import javax.persistence.*;
 
 //створив базу даних "money", прописав там USD, EUR, UAH, створи в себе бд і після клонування
 //чи там будуть якісь записи ???
-@Table(name = "curency_table", catalog = "money")
-public class EntityMoney
-{
+@Table(name = "currency_table", catalog = "money")
+public class EntityMoney {
 
     @Id
     //коментимо наступний рядок і прописуємо конструктор для id, щоб потім запхати в id міжнародні коди наших валют
@@ -16,14 +15,14 @@ public class EntityMoney
 
     //да, а анотація Id забезпечить його унікальність, як мінімум потрібно спробувати
     //@GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "curency_id")
+    @Column(name = "currency_id")
     private Long id;
 
-    @Column(name = "curency_name")
+    @Column(name = "currency_name")
     private String name;
 
-    @Column(name = "curency_amount")
-    private Float amount;
+    @Column(name = "currency_amount")
+    private Long amount;
 
     @Column(name = "buy_rate")
     private Float buyRate;
@@ -31,75 +30,74 @@ public class EntityMoney
     @Column(name = "sell_rate")
     private Float sellRate;
 
+    //привязка транзакции
 
-
-    //привязка Users
-
-    @OneToOne(fetch = FetchType.EAGER,cascade = CascadeType.ALL)
-    private EntityUser entityUser;
-
+//    @OneToOne( mappedBy = "entityMoney",
+//            fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+//    private TransactionsModel transactionsModel;
 
 
     //добавив дефолтний конструктор
     public EntityMoney() {
     }
 
-    public EntityMoney(Long id, String name, Float amount, Float buyRate, Float sellRate) {
-        this.id = id;
-        this.name = name;
-        this.amount = amount;
-        this.buyRate = buyRate;
-        this.sellRate = sellRate;
+    public Long getId() {
+        return id;
     }
-
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setAmount(Float amount) {
-        this.amount = amount;
-    }
-
-    public void setBuyRate(Float buyRate) {
-        this.buyRate = buyRate;
-    }
-
-    public void setSellRate(Float sellRate) {
-        this.sellRate = sellRate;
-    }
-
-
-    public Long getId() {
-        return id;
     }
 
     public String getName() {
         return name;
     }
 
-    public Float getAmount() {
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Long getAmount() {
         return amount;
+    }
+
+    public void setAmount(Long amount) {
+        this.amount = amount;
     }
 
     public Float getBuyRate() {
         return buyRate;
     }
 
+    public void setBuyRate(Float buyRate) {
+        this.buyRate = buyRate;
+    }
+
     public Float getSellRate() {
         return sellRate;
     }
 
-
-    public EntityUser getEntityUser() {
-        return entityUser;
+    public void setSellRate(Float sellRate) {
+        this.sellRate = sellRate;
     }
 
-    public void setEntityUser(EntityUser entityUser) {
-        this.entityUser = entityUser;
+    public EntityMoney(Long id, String name, Long amount, Float buyRate, Float sellRate) {
+        this.id = id;
+        this.name = name;
+        this.amount = amount;
+        this.buyRate = buyRate;
+        this.sellRate = sellRate;
     }
+
+    //    public TransactionsModel getTransactionsModel() {
+//        return transactionsModel;
+//    }
+//
+//    public void setTransactionsModel(TransactionsModel transactionsModel) {
+//        this.transactionsModel = transactionsModel;
+//    }
 }
+
+
+
+
