@@ -35,12 +35,12 @@ public class ControllerMoney {
         Float b=1.0f;
         if (name_1.equals("USD")){
             if(name_2.equals("USD")){
-                a="ERROR";
+                a="Масло маслянное";
             }
             if (name_2.equals("EUR")){
                 b=myCurrency.getPrice()*myQuotation.usd_eur;
                 a="EUR";
-                System.out.println("ERO");
+                System.out.println("EUR");
 
             }
             if(name_2.equals("UAH")){
@@ -63,7 +63,7 @@ public class ControllerMoney {
 
             }
             if (name_2.equals("EUR")){
-                a="ERROR";
+                a="Масло маслянное";
             }
         }
 
@@ -77,7 +77,7 @@ public class ControllerMoney {
                 b=myCurrency.getPrice()*myQuotation.uah_eur;
             }
             if (name_2.equals("UAH")){
-                a="ERROR";
+                a="Масло маслянное";
             }
         }
         model.put("key",a);
