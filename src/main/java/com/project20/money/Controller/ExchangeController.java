@@ -21,39 +21,32 @@ public class ExchangeController {
 
   @GetMapping("/pg")
   public String getPage(Map<String, Object> model) {
-//    model.put("transList", transactionRepository.findAll());
+//    делаем денег ... КОСТЫЛЬ!!!!!!
+    MoneyCreate money = new MoneyCreate().make();
+    model.put("moneyRate", repositoryMoney.findAll());
+    model.put("moneyList", repositoryMoney.findAll());
     return "page_1";
   }
+
   @PostMapping("/pg")
   public String postPage(@RequestParam(value = "addSum") Long sum,
                          @RequestParam(value = "whatDo") String action,
                          @RequestParam(value = "nameCurrency") String currency,
                          Map<String, Object> model) {
-//    создал запас денег с курсами пока так - єто !!!КОСТЫЛЬ ...
-    EntityMoney entityMoneyUSD = new EntityMoney(1L, "USD",
-            10000L, 25f, 28f);
-    EntityMoney entityMoneyEUR = new EntityMoney(2L, "EUR",
-            10000L, 29f, 31f);
-    EntityMoney entityMoneyUAH = new EntityMoney(3L, "UAH",
-            10000L, 1f, 1f);
-    repositoryMoney.save(entityMoneyUSD);
-    repositoryMoney.save(entityMoneyEUR);
-    repositoryMoney.save(entityMoneyUAH);
-//    болванка курсов для проверки работы пока я их не смог (((
-//    из базы мани по repositoryMoney дернуть...
-    EntityMoney entityMoneyKOSTIL =new EntityMoney();
+    //   модель транзакции - ВНОСИТ с формы сколько и выбраную валюту - название
+    TransactionsModel transactionsModel = getTransactionsModel(sum, currency);
 
+    EntityMoney entityMoneyKOSTIL = new EntityMoney();
+    EntityMoney entityMoneyUAHChange = repositoryMoney.getOne(3L);
     if (currency.equals("USD")) {
-      entityMoneyKOSTIL=entityMoneyUSD;
+      entityMoneyKOSTIL = repositoryMoney.getOne(1L);
     }
     if (currency.equals("EUR")) {
-      entityMoneyKOSTIL=entityMoneyEUR;
+      entityMoneyKOSTIL = repositoryMoney.getOne(2L);
     }
     if (currency.equals("UAH")) {
-      entityMoneyKOSTIL=entityMoneyUAH;
+      entityMoneyKOSTIL = repositoryMoney.getOne(3L);
     }
-//   модель транзакции - ВНОСИТ В ПОЛЯ сумму и выбраную валюту название
-    TransactionsModel transactionsModel = getTransactionsModel(sum, currency);
 
 //   НИЖЕ СЕКЦИИ ИФ : по нажатию одной из кнопок на странице проверяет какая нажата и что делать
 //   @запроспараметра для name="whatDo" если после submit (нажатие)
@@ -65,10 +58,16 @@ public class ExchangeController {
       transactionsModel.setRate(entityMoneyKOSTIL.getBuyRate());
       transactionsModel.setSum_name(sum * entityMoneyKOSTIL.getBuyRate());
       transactionRepository.save(transactionsModel);
-      model.put("transList", transactionsModel);
+      model.put("OneTrans", transactionsModel);
+      model.put("transList", transactionRepository.findAll());
 
-      entityMoneyKOSTIL.setAmount(entityMoneyKOSTIL.getAmount()-sum);
+      entityMoneyKOSTIL.setAmount(entityMoneyKOSTIL.getAmount() - sum);
+      entityMoneyUAHChange.setAmount(entityMoneyUAHChange.getAmount() + (sum * entityMoneyKOSTIL.getBuyRate().longValue()));
       repositoryMoney.save(entityMoneyKOSTIL);
+      repositoryMoney.save(entityMoneyUAHChange);
+      model.put("moneyRate", repositoryMoney.findAll());
+      model.put("moneyList", repositoryMoney.findAll());
+
     }
 
     if (action.equals("sell")) {
@@ -76,10 +75,14 @@ public class ExchangeController {
       transactionsModel.setRate(entityMoneyKOSTIL.getSellRate());
       transactionsModel.setSum_name(sum * entityMoneyKOSTIL.getSellRate());
       transactionRepository.save(transactionsModel);
-      model.put("transList", transactionsModel);
-
-      entityMoneyKOSTIL.setAmount(entityMoneyKOSTIL.getAmount()+sum);
+      model.put("OneTrans", transactionsModel);
+      model.put("transList", transactionRepository.findAll());
+      entityMoneyKOSTIL.setAmount(entityMoneyKOSTIL.getAmount() + sum);
+      entityMoneyUAHChange.setAmount(entityMoneyUAHChange.getAmount() - (sum * entityMoneyKOSTIL.getSellRate().longValue()));
       repositoryMoney.save(entityMoneyKOSTIL);
+      model.put("moneyRate", repositoryMoney.findAll());
+      model.put("moneyList", repositoryMoney.findAll());
+
 
     }
 //   показать все транзакции и баланс
@@ -91,6 +94,14 @@ public class ExchangeController {
     if (action.equals("show_bal")) {
       model.put("moneyList", repositoryMoney.findAll());
     }
+    if (action.equals("dell")) {
+      repositoryMoney.deleteAll();
+      transactionRepository.deleteAll();
+      MoneyCreate money = new MoneyCreate().make();
+      model.put("moneyRate", repositoryMoney.findAll());
+
+
+    }
     return "page_1";
   }
 
@@ -101,5 +112,25 @@ public class ExchangeController {
     transactionsModel.setValue(sum);
     transactionsModel.setCurrency_name(currency);
     return transactionsModel;
+  }
+
+  private class MoneyCreate {
+    private EntityMoney entityMoneyUSD;
+    private EntityMoney entityMoneyEUR;
+    private EntityMoney entityMoneyUAH;
+
+
+    public MoneyCreate make() {
+      entityMoneyUSD = new EntityMoney(1L, "USD",
+              10000L, 28f, 27f);
+      entityMoneyEUR = new EntityMoney(2L, "EUR",
+              10000L, 32f, 31f);
+      entityMoneyUAH = new EntityMoney(3L, "UAH",
+              1000000L, 1f, 1f);
+      repositoryMoney.save(entityMoneyUSD);
+      repositoryMoney.save(entityMoneyEUR);
+      repositoryMoney.save(entityMoneyUAH);
+      return this;
+    }
   }
 }

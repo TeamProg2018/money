@@ -6,9 +6,29 @@
     <meta charset="UTF-8">
     <title>Page_1</title>
     <link rel="stylesheet" type="text/css" href="http://localhost:63342/money/templates/page_1.css">
+    <style>
+        .b1 {
+            background: black; /* Синий цвет фона */
+            color: yellow; /* Белые буквы */
+            font-size: 12pt; /* Размер шрифта в пунктах */
+        }
+    </style>
 </head>
 <body>
 <form method="post">
+    Exchange Rate
+    <table border="1" bgcolor="aqua">
+        <tr>
+            <th> Name</th>
+            <th> Buy Rate</th>
+            <th> Sell Rate</th>
+        </tr>
+        <tr th:each="eachMoney:${moneyRate}">
+            <td th:text="${eachMoney.name}">...</td>
+            <td th:text="${eachMoney.buyRate}">...</td>
+            <td th:text="${eachMoney.sellRate}">...</td>
+        </tr>
+    </table>
     <input type="text" name="addSum" placeholder="Введите сумму: ">
     <label>
         <select name="nameCurrency">
@@ -17,29 +37,47 @@
             <option>UAH</option>
         </select>
     </label>
-    <!-- обменять на
-     <select name="name_2">
-         <option>USD</option>
-         <option>EUR</option>
-         <option>UAH</option>
-     </select>  -->
     <button type="submit" name="whatDo" value="buy"> Купить</button>
     <button type="submit" name="whatDo" value="sell"> Продать</button>
     <br>
-    <br>
-    <button type="submit" name="whatDo" value="show_trans"> Показать все транзакции</button>
-    <br>
-    <br>
-    <button type="submit" name="whatDo" value="show_bal"> Показать баланс/запас</button>
-</form>
+    СОВЕРШЕНА СДЕЛКА :
+    <table border="1" bgcolor="#f5f5dc">
+        <tr>
+            <th> Sum</th>
+            <th> Currency</th>
+            <th> Sell/Buy?</th>
+            <th> Exchange_Rate</th>
+            <th> Total_cost</th>
+        </tr>
+        <tr th:each="eachTrans:${OneTrans}">
+            <td th:text="${eachTrans.value}">...</td>
+            <td th:text="${eachTrans.currency_name}">...</td>
+            <td th:text="${eachTrans.sell_buy_name}">...</td>
+            <td th:text="${eachTrans.rate}">...</td>
+            <td th:text="${eachTrans.sum_name}">...</td>
+        </tr>
+    </table>
 
-<!--Это будет:
-<td th:text="${key_1}"></td>
-<td th:text="${key}"></td> -->
+    НИЖЕ СЛУЖЕНАЯ ИНФА для теста чтоб видеть сразу изменения (потом можно спрятать и выводить по кнопкам , под паролем )
 
+<table border="1" bgcolor="#7fffd4">
+    <tr>
+        <th> Currency Id</th>
+        <th> Name     </th>
+        <th> Amount   </th>
+        <th> Buy Rate </th>
+        <th> Sell Rate</th>
+    </tr>
+    <tr th:each="eachMoney:${moneyList}">
+        <td th:text="${eachMoney.id}">...</td>
+        <td th:text="${eachMoney.name}">...</td>
+        <td th:text="${eachMoney.amount}">...</td>
+        <td th:text="${eachMoney.buyRate}">...</td>
+        <td th:text="${eachMoney.sellRate}">...</td>
+    </tr>
+</table>
 Transactions
-
-<table border="1px">
+<table border="1" bgcolor="#f5f5dc">
     <tr>
         <th> Id</th>
         <th> Sum</th>
@@ -58,26 +96,10 @@ Transactions
     </tr>
 </table>
 
-
-Money Balance
-<table border="1">
-    <tr>
-        <th> Currency Id</th>
-        <th> Name</th>
-        <th> Amount</th>
-        <th> Buy Rate</th>
-        <th> Sell Rate</th>
-    </tr>
-
-    <tr th:each="eachMoney:${moneyList}">
-        <td th:text="${eachMoney.id}">...</td>
-        <td th:text="${eachMoney.name}">...</td>
-        <td th:text="${eachMoney.amount}">...</td>
-        <td th:text="${eachMoney.buyRate}">...</td>
-        <td th:text="${eachMoney.sellRate}">...</td>
-    </tr>
-</table>
-
+    <button type="submit" name="whatDo" value="show_trans"> Показать все транзакции</button>
+    <button type="submit" name="whatDo" value="show_bal"> Показать баланс/запас</button>
+    <button type="submit" class="b1" name="whatDo" value="dell"> НАЧАТЬ ВСЕ СНАЧАЛА (удалит все и пересоздаст)</button>
+</form>
 
 </body>
 </html>
