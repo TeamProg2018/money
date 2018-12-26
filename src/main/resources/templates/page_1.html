@@ -35,7 +35,7 @@
         <select name="nameCurrency">
             <option>USD</option>
             <option>EUR</option>
-            <option>UAH</option>
+          <!-- <option disabled>UAH</option> -->
         </select>
     </label>
     <button type="submit" name="whatDo" value="buy"> Купить</button>
@@ -59,7 +59,10 @@
         </tr>
     </table>
 
-    НИЖЕ СЛУЖЕНАЯ ИНФА для теста чтоб видеть сразу изменения (потом можно спрятать и выводить по кнопкам , под паролем )
+    НИЖЕ СЛУЖЕНАЯ ИНФА все транзакции и баланс
+    <br>
+    <button type="submit" name="whatDo" value="show_bal"> Показать баланс/запас</button>
+    <button type="submit" name="whatDo" value="show_trans"> Показать баланс и все транзакции</button>
 
 <table border="1" bgcolor="#7fffd4">
     <tr>
@@ -97,8 +100,7 @@ Transactions
     </tr>
 </table>
 
-    <button type="submit" name="whatDo" value="show_trans"> Показать все транзакции</button>
-    <button type="submit" name="whatDo" value="show_bal"> Показать баланс/запас</button>
+
     <button type="submit" class="b1" name="whatDo" value="dell"> НАЧАТЬ ВСЕ СНАЧАЛА (удалит все и пересоздаст)</button>
 </form>
 
