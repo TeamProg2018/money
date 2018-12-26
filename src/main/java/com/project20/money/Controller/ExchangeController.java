@@ -33,6 +33,7 @@ public class ExchangeController {
                          @RequestParam(value = "whatDo") String action,
                          @RequestParam(value = "nameCurrency") String currency,
                          Map<String, Object> model) {
+    System.out.println(sum);
     //   модель транзакции - ВНОСИТ с формы сколько и выбраную валюту - название
     TransactionsModel transactionsModel = getTransactionsModel(sum, currency);
 

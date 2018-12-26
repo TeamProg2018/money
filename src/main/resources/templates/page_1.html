@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Page_1</title>
-    <link rel="stylesheet" type="text/css" href="http://localhost:63342/money/templates/page_1.css">
+    <link rel="stylesheet" id="linc" type="text/css" href="http://localhost:63342/money/templates/page_1.css">
     <style>
         .b1 {
             background: black; /* Синий цвет фона */
@@ -15,6 +15,7 @@
     </style>
 </head>
 <body>
+<button onclick="dayNightFunction()">Дневной/Ночной</button>
 <form method="post">
     Exchange Rate
     <table border="1" bgcolor="aqua">
@@ -29,7 +30,7 @@
             <td th:text="${eachMoney.sellRate}">...</td>
         </tr>
     </table>
-    <input type="text" name="addSum" placeholder="Введите сумму: ">
+    <input type="text" name="addSum" pattern="[0-9]{1-5}.[0-9]{2}" placeholder="Введите сумму: ">
     <label>
         <select name="nameCurrency">
             <option>USD</option>
@@ -101,5 +102,6 @@ Transactions
     <button type="submit" class="b1" name="whatDo" value="dell"> НАЧАТЬ ВСЕ СНАЧАЛА (удалит все и пересоздаст)</button>
 </form>
 
+<script src="http://localhost:63342/money/templates/page_1.js"></script>
 </body>
 </html>
