@@ -48,15 +48,14 @@
 <div id="div1">
     <form method="post">
 
-    <input type="text" name="addSum" pattern="[0-9]{1-5}.[0-9]{2}" placeholder="Введите сумму: "/>
-    <!--<input type="text" name="addSum" pattern="[0-9]{1-5}.[0-9]{2}" placeholder="Введите сумму: " required>-->
-    <label>
-        <select name="nameCurrency">
-            <option>USD</option>
-            <option>EUR</option>
-          <!-- <option disabled>UAH</option> -->
-        </select>
-    </label>
+        <input type="number" name="addSum" value=0 pattern="[0-9]{1-5}" placeholder="Введите сумму: ">
+        <label>
+            <select name="nameCurrency">
+                <option>USD</option>
+                <option>EUR</option>
+                <!-- <option disabled>UAH</option> -->
+            </select>
+        </label>
     <button type="submit" name="whatDo" value="buy"> Купить</button>
     <button type="submit" name="whatDo" value="sell"> Продать</button>
     <br>
