@@ -4,11 +4,11 @@ function dayNightFunction() {
 
     if(p%2==0)
     {
-        linc.href="page_2.css";
+        linc.href="../static/page_2.css";
     }
     else
     {
-        linc.href="page_1.css";
+        linc.href="../static/page_1.css";
     }
     p++;
 
