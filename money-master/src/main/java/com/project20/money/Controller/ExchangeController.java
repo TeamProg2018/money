@@ -45,6 +45,7 @@ public class ExchangeController {
     if (currency.equals("EUR")) {
       entityMoneyKOSTIL = repositoryMoney.getOne(2L);
     }
+
     if (currency.equals("UAH")) {
       entityMoneyKOSTIL = repositoryMoney.getOne(3L);
     }
